@@ -1,5 +1,6 @@
 import { graphql, useMutation } from "react-relay"
 import { DeletePostItemButtonMutation } from "./__generated__/DeletePostItemButtonMutation.graphql"
+import { toast } from "sonner"
 
 type DeletePostItemButtonProps = {
   id: string
@@ -31,7 +32,7 @@ export const DeletePostItemButton: React.FC<DeletePostItemButtonProps> = ({ id }
           variables: { input: { id } },
           onCompleted: res => {
             if (res.postDelete.__typename === 'PostNotExistError') {
-              // snackbar.error(res.postDelete.message)
+              toast.error(res.postDelete.message)
             }
           }
         })
