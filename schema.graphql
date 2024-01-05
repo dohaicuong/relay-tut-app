@@ -1,0 +1,84 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type BaseError implements Error {
+  message: String!
+}
+
+interface Error {
+  message: String!
+}
+
+type Mutation {
+  postCreate(input: PostCreateInput!): PostCreatePayload!
+  postDelete(input: PostDeleteInput!): MutationPostDeleteResult!
+}
+
+union MutationPostDeleteResult = BaseError | MutationPostDeleteSuccess | PostNotExistError
+
+type MutationPostDeleteSuccess {
+  data: PostDeletePayload!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Post implements Node {
+  content: String!
+  id: ID!
+  title: String!
+}
+
+input PostCreateInput {
+  content: String!
+  title: String!
+}
+
+type PostCreatePayload {
+  post: Post!
+}
+
+input PostDeleteInput {
+  id: ID!
+}
+
+type PostDeletePayload {
+  post: Post!
+}
+
+type PostNotExistError implements Error {
+  id: String!
+  message: String!
+}
+
+type Query {
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+  posts(after: String, before: String, first: Int, last: Int, where: QueryPostConnectionFilter): QueryPostsConnection!
+}
+
+input QueryPostConnectionFilter {
+  title: String
+}
+
+type QueryPostsConnection {
+  edges: [QueryPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryPostsConnectionEdge {
+  cursor: String!
+  node: Post!
+}
+
