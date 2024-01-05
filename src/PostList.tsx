@@ -45,10 +45,14 @@ export const PostList: React.FC<PostListProps> = ({ queryRef }) => {
 
   return (
     <>
+      <h2>Create your post</h2>
       <PostCreateForm
         connectionId={data.posts.__id}
       />
 
+      <h2>
+        Post wall
+      </h2>
       <SearchInput
         onTitleChange={title => refetch({ where: { title }})}
       />
