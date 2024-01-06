@@ -27,13 +27,25 @@ export const PostCreateForm: React.FC<PostCreateFormProps> = ({ connectionId }) 
     }
   `)
 
-  const { register, handleSubmit } = useForm<PostCreateInput>()
+  const { register, handleSubmit, reset } = useForm<PostCreateInput>()
   const onSubmit: SubmitHandler<PostCreateInput> = data => {
     mutate({
       variables: {
         input: data,
         connection: connectionId
       },
+      optimisticResponse: {
+        postCreate: {
+          post: {
+            id: 'Post:newId',
+            title: data.title,
+            content: data.content,
+          }
+        }
+      },
+      onCompleted: () => {
+        reset()
+      }
     })
   }
 

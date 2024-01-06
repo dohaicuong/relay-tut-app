@@ -73,8 +73,6 @@ export const PostList: React.FC<PostListProps> = ({ queryRef }) => {
           {data.posts.edges.map(edge => {
             if (!edge?.node) return null
 
-            console.log(edge.node.id)
-
             return (
               <PostItem
                 key={edge.node.id}
