@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<93ba272dffcf0c5e4943b47bff8685da>>
+ * @generated SignedSource<<b01ce5cdb039b9b1dcaa2dd1bf1edc07>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -137,36 +137,36 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "filters": null,
+            "handle": "appendNode",
+            "key": "",
+            "kind": "LinkedHandle",
+            "name": "post",
+            "handleArgs": [
+              {
+                "items": [
+                  {
+                    "kind": "Variable",
+                    "name": "connections.0",
+                    "variableName": "connection"
+                  }
+                ],
+                "kind": "ListValue",
+                "name": "connections"
+              },
+              {
+                "kind": "Literal",
+                "name": "edgeTypeName",
+                "value": "QueryPostsConnectionEdge"
+              }
+            ]
           }
         ],
         "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": (v2/*: any*/),
-        "filters": null,
-        "handle": "appendNode",
-        "key": "",
-        "kind": "LinkedHandle",
-        "name": "postCreate",
-        "handleArgs": [
-          {
-            "items": [
-              {
-                "kind": "Variable",
-                "name": "connections.0",
-                "variableName": "connection"
-              }
-            ],
-            "kind": "ListValue",
-            "name": "connections"
-          },
-          {
-            "kind": "Literal",
-            "name": "edgeTypeName",
-            "value": "QueryPostsConnectionEdge"
-          }
-        ]
       }
     ]
   },
@@ -181,6 +181,6 @@ return {
 };
 })();
 
-(node as any).hash = "761a53a30d969867e2f35121af5a59f7";
+(node as any).hash = "158be59d4c83c2c9c622734dc109625b";
 
 export default node;

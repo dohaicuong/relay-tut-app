@@ -1,6 +1,8 @@
 import { graphql, useMutation } from "react-relay"
 import { DeletePostItemButtonMutation } from "./__generated__/DeletePostItemButtonMutation.graphql"
 import { toast } from "sonner"
+import { IconButton } from "@mui/joy"
+import { Delete } from "@mui/icons-material"
 
 type DeletePostItemButtonProps = {
   id: string
@@ -26,7 +28,7 @@ export const DeletePostItemButton: React.FC<DeletePostItemButtonProps> = ({ id }
   `)
 
   return (
-    <button
+    <IconButton
       onClick={() => {
         mutate({
           variables: { input: { id } },
@@ -39,7 +41,7 @@ export const DeletePostItemButton: React.FC<DeletePostItemButtonProps> = ({ id }
       }}
       disabled={isOnFly}
     >
-      delete
-    </button>
+      <Delete />
+    </IconButton>
   )
 }

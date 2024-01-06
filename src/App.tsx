@@ -14,7 +14,7 @@ export const App = () => {
 
   return (
     <PostList
-      queryRef={data}
-    />
+        queryRef={data}
+      />
   )
 }

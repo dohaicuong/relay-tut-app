@@ -1,12 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+
 import { App } from './App.tsx'
-import { RelayProvider } from './relay.tsx'
+import { RelayProvider } from './providers/relay.tsx'
+import { ThemeProvider } from './providers/theme.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RelayProvider>
-      <App />
-    </RelayProvider>
+    <ThemeProvider>
+      <RelayProvider>
+        <App />
+      </RelayProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 )

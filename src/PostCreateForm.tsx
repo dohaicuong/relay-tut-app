@@ -1,6 +1,7 @@
 import { graphql, useMutation } from "react-relay"
 import { PostCreateFormMutation, PostCreateInput } from "./__generated__/PostCreateFormMutation.graphql"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { Button, Input, Stack } from "@mui/joy"
 
 type PostCreateFormProps = {
   connectionId: string
@@ -13,12 +14,13 @@ export const PostCreateForm: React.FC<PostCreateFormProps> = ({ connectionId }) 
       $connection: ID!
     ) {
       postCreate(input: $input)
-      @appendNode(
-        connections: [$connection],
-        edgeTypeName: "QueryPostsConnectionEdge"
-      )
       {
-        post {
+        post
+        @appendNode(
+          connections: [$connection],
+          edgeTypeName: "QueryPostsConnectionEdge"
+        )
+        {
           ...PostItem_post
         }
       }
@@ -39,22 +41,24 @@ export const PostCreateForm: React.FC<PostCreateFormProps> = ({ connectionId }) 
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <input
-        placeholder='title'
-        disabled={isOnFly}
-        {...register('title')}
-      />
-      <input
-        placeholder='content'
-        disabled={isOnFly}
-        {...register('content')}
-      />
-      <button
-        type='submit'
-        disabled={isOnFly}
-      >
-        create
-      </button>
+      <Stack mt={2} spacing={2}>
+        <Input
+          placeholder='title'
+          disabled={isOnFly}
+          {...register('title')}
+        />
+        <Input
+          placeholder='content'
+          disabled={isOnFly}
+          {...register('content')}
+        />
+        <Button
+          type='submit'
+          disabled={isOnFly}
+        >
+          create
+        </Button>
+      </Stack>
     </form>
   )
 }
